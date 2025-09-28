@@ -27,3 +27,6 @@ def categorizar_atraso(minutos):
     
     else:
         return 'Grave'
+    
+
+df['Categoria de atraso'] = df['Atraso (min)'].apply(categorizar_atraso)
