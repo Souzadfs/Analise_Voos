@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pylab as plot
+import seaborn as sns
 
 df = pd.read_csv("voos_comerciais_ficticios.csv")
 print(df.shape)
@@ -30,3 +32,16 @@ def categorizar_atraso(minutos):
     
 
 df['Categoria de atraso'] = df['Atraso (min)'].apply(categorizar_atraso)
+
+frequenca_atraso = df['Categoria de atraso'].value_counts().sort_index()
+
+sns.set(style='whitegrid')
+
+plot.figure(figsize= (8,6))
+sns.barplot(x=frequenca_atraso.index, y=frequenca_atraso.values, palette="viridis")
+plot.title("Distribuição das Categorias por atraso")
+plot.xlabel("Categoria por atraso")
+plot.xlabel("Numero de voos")
+plot.tight_layout
+
+plot.show
